@@ -1,0 +1,37 @@
+<h3 class='page_title'>Add an SSH Key</h3>
+<hr>
+<div>
+<form accept-charset="UTF-8" action="/keys" class="new_key" id="new_key" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="JQiZm6LvL3ssmrogtIAxubtXHyFEtIDKi8VARvCQG2s=" /></div><div class='clearfix'>
+<label for="key_title">Title</label>
+<div class='input'><input id="key_title" name="key[title]" size="30" type="text" /></div>
+</div>
+<div class='clearfix'>
+<label for="key_key">Key</label>
+<div class='input'>
+<textarea class="xxlarge thin_area" cols="40" id="key_key" name="key[key]" rows="20">
+</textarea>
+<p class='hint'>
+Paste your public key here. Read more about how generate it
+<a href="/help/ssh">here</a>
+</p>
+</div>
+</div>
+<div class='actions'>
+<input class="btn btn-save" name="commit" type="submit" value="Save" />
+<a href="/keys" class="btn btn-cancel">Cancel</a>
+</div>
+</form>
+
+</div>
+
+<script>
+  $('#key_key').on('keyup', function(){
+    var title = $('#key_title'),
+        val      = $('#key_key').val(),
+        key_mail = val.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+|\.[a-zA-Z0-9._-]+)/gi);
+  
+    if( key_mail && key_mail.length > 0 && title.val() == '' ){
+      $('#key_title').val( key_mail );
+    }
+  });
+</script>
